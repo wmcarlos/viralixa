@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccessTable extends Migration
+class CreateRoles_ServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAccessTable extends Migration
      */
     public function up()
     {
-        Schema::create('access', function (Blueprint $table) {
+        Schema::create('roles_services', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->unsigned();
             $table->integer('service_id')->unsigned();
