@@ -11,6 +11,6 @@ class Service extends Model
     protected $fillable = ['name','url','position','icon','isactive'];
 
     public function roles(){
-    	return $this->belongsToMany('App\Rol')->withTimestamps();
+    	return $this->belongsToMany('App\Role','roles_services')->withPivot('service_id')->withTimestamps();
     }
 }
