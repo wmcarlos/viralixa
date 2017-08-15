@@ -80,7 +80,6 @@ class RoleController extends Controller
         $role::where('id',$id)
         ->update(['name' => $name]);
 
-        //---------------Get All Data--------------------
         return redirect('roles');
     }
 
