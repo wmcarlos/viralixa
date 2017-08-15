@@ -10,7 +10,7 @@
 			<div class="form-group">
 				{!! Form::label('name','Nombre',['class' => 'col-sm-2 col-sm-2 control-label']) !!}
 				<div class="col-sm-10">
-					{!! Form::text('txtname',null,['class' => 'form-control','id' => 'txtname']) !!}
+					{!! Form::text('name',null,['class' => 'form-control','id' => 'name']) !!}
 				</div>
 			</div>
 			{!! Form::button('<i class="fa fa-floppy-o"></i> Guardar',['type' => 'submit', 'class' => 'btn btn-success']) !!}

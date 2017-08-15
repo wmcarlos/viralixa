@@ -40,15 +40,13 @@ class RoleController extends Controller
         //----------------Insert Data--------------------
         $role = new Role;
 
-        $name = $request->input('txtname');
+        $name = $request->input('name');
 
         $role->name = $name;
 
         $role->save();
-        //---------------Get All Data--------------------
-        $roles = Role::all()->sortBy('name');
-
-        return view('Role.all')->with('roles',$roles);
+        
+        return redirect('roles');
     }
 
     /**
@@ -71,9 +69,19 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //-----------Update Data---------------------------
+        $role = new Role;
+
+        $id = $request->input('id');
+        $name = $request->input('name');
+
+        $role::where('id',$id)
+        ->update(['name' => $name]);
+
+        //---------------Get All Data--------------------
+        return redirect('roles');
     }
 
     public function activate($id){
