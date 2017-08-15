@@ -17,13 +17,6 @@ Route::get('login', function () { return view('login'); });
 
 Route::get('dashboard', function (){ return view('admin'); });
 
-Route::resource('roles','RoleController');
+Route::resource('roles','RoleController', ['except' => ['destroy','show']]);
 Route::get('roles/activate/{id}',['uses' => 'RoleController@activate']);
 Route::get('roles/inactivate/{id}',['uses' => 'RoleController@inactivate']);
-
-
-Route::resource('countries','CountryController');
-
-Route::resource('users','UserController');
-
-Route::resource('services','ServiceController');

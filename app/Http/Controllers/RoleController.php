@@ -37,7 +37,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //----------------Insert Data--------------------
+        $role = new Role;
+
+        $name = $request->input('txtname');
+
+        $role->name = $name;
+
+        $role->save();
+        //---------------Get All Data--------------------
+        $roles = Role::all()->sortBy('name');
+
+        return view('Role.all')->with('roles',$roles);
     }
 
     /**
