@@ -1,3 +1,3 @@
-@extends('partials.main')
+@extends('admin.main')
 
 @section('title','Home')
