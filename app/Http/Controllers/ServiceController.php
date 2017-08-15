@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +12,8 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $roles = Role::all()->sortBy('name');
-
-        return view('Role.all')->with('roles',$roles);
+    {
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('Role.add');
+        //
     }
 
     /**
@@ -37,7 +34,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -47,10 +55,8 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
-        $role = Role::find($id);
-
-        return view('Role.update')->with('role',$role);
+    {
+        //
     }
 
     /**
@@ -65,25 +71,14 @@ class RoleController extends Controller
         //
     }
 
-    public function activate($id){
-
-        $role = Role::find($id);
-
-        $role->isactive = 'Y';
-
-        $role->save();
-
-        return redirect('roles');
-    }
-
-    public function inactivate($id){
-
-        $role = Role::find($id);
-
-        $role->isactive = 'N';
-
-        $role->save();
-
-        return redirect('roles');
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

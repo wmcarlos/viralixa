@@ -1,4 +1,12 @@
-
+          <footer class="site-footer">
+          <div class="text-center">
+              2017 - Frontuari, C.A.
+              <a href="{{ url('dashboard') }}" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+  </section>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
