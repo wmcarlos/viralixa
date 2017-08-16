@@ -39,6 +39,11 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //----------------Insert Data--------------------
+
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
+
         $role = new Role;
         $name = $request->input('name');
         $rl = $role->where('name','=',$name)->first();
@@ -52,7 +57,7 @@ class RoleController extends Controller
             }catch(\Exception $e){
                 $message = "Error al Intentar Registrar el Rol!!!";
             }
-            
+
         }else{
             $message = "El Rol que Intenta Insertar ya Existe!!!";
         }
@@ -84,14 +89,29 @@ class RoleController extends Controller
      */
     public function update(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
         //-----------Update Data---------------------------
         $role = new Role;
-
         $id = $request->input('id');
         $name = $request->input('name');
 
-        $role::where('id',$id)
-        ->update(['name' => $name]);
+        $rl = $role->where('name','=',$name)->first();
+
+        if($rl === null){
+            try{
+                $role::where('id',$id)
+                    ->update(['name' => $name]);
+                $message = "Rol Modificado con Exito!!";
+            }catch(\Exception $e){
+                $message = "Ocurrio un error al Tratar de Modificar el Rol!!";
+            }
+        }else{
+            $message = "El Rol que Intenta Modificar ya Existe!!";
+        }
+
+        Session::flash('message',$message);        
 
         return redirect('roles');
     }
@@ -102,7 +122,14 @@ class RoleController extends Controller
 
         $role->isactive = 'Y';
 
-        $role->save();
+        try{
+             $role->save();
+             $message = "Rol Activado con Exito!!";
+        }catch(\Exception $e){
+            $message = "Ocurrio un error al Tratar de Activar el Rol!!";
+        }
+
+        Session::flash("message",$message);
 
         return redirect('roles');
     }
@@ -113,7 +140,14 @@ class RoleController extends Controller
 
         $role->isactive = 'N';
 
-        $role->save();
+        try{
+            $role->save();
+            $message = "Rol Desactivado con Exito!!";
+        }catch(\Exception $e){
+            $message = "Ocurrio un error al tratar de Desactivar el Rol!!";
+        }
+
+        Session::flash("message",$message);
 
         return redirect('roles');
     }
