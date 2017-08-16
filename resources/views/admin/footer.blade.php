@@ -17,11 +17,42 @@
     <script src="{{ asset('js/jquery.nicescroll.js') }}" type="text/javascript"></script>
     <!--common script for all pages-->
     <script src="{{ asset('js/common-scripts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootbox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('DataTables-1.10.15/media/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('.data-table').DataTable();
+
+            $(".inactivate").click(function(e){
+                var url = $(this).attr("href");
+                e.preventDefault();
+                
+                bootbox.confirm("¿Estas seguro de Desactivar este registro?", function(result){ 
+                    if(result){
+                        $(location).attr("href",url);
+                    }
+                });
+            });
+
+            $(".activate").click(function(e){
+                var url = $(this).attr("href");
+                e.preventDefault();
+
+                bootbox.confirm("¿Estas seguro de activar este registro?", function(result){ 
+                    if(result){
+                        $(location).attr("href",url);
+                    }
+                });
+            });
         });
     </script>
+    @if(Session::has('message'))
+      <script type="text/javascript">
+          bootbox.alert({
+            'title':'Alerta',
+            'message':'{{ Session::get("message") }}'
+          });
+      </script>
+    @endif()
   </body>
 </html>

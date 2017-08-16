@@ -21,9 +21,9 @@
 						<td>
 							@if($role->isactive == 'Y')
 								<a href="{{ url('roles/'.$role->id.'/edit') }}" class="btn btn-info"><i class="fa fa-pencil"></i> Editar</a>
-								<a href="{{ url('roles/inactivate/'.$role->id) }}" class="btn btn-danger"><i class="fa fa-times"></i> Desactivar</a>
+								<a href="{{ url('roles/inactivate/'.$role->id) }}" class="btn btn-danger inactivate"><i class="fa fa-times"></i> Desactivar</a>
 							@else
-								<a class="btn btn-success" href="{{ url('roles/activate/'.$role->id) }}"><i class="fa fa-check"></i>Activar</a>
+								<a class="btn btn-success activate" href="{{ url('roles/activate/'.$role->id) }}"><i class="fa fa-check"></i>Activar</a>
 							@endif
 						</td>
 					</tr>

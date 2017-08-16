@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use Illuminate\Http\Request;
+use Session;
 
 class RoleController extends Controller
 {
@@ -39,13 +40,25 @@ class RoleController extends Controller
     {
         //----------------Insert Data--------------------
         $role = new Role;
-
         $name = $request->input('name');
+        $rl = $role->where('name','=',$name)->first();
 
-        $role->name = $name;
+        if($rl === null){
 
-        $role->save();
-        
+            try{
+                $role->name = $name;
+                $role->save();
+                $message = "Rol Insertado con Exito!!";
+            }catch(\Exception $e){
+                $message = "Error al Intentar Registrar el Rol!!!";
+            }
+            
+        }else{
+            $message = "El Rol que Intenta Insertar ya Existe!!!";
+        }
+
+        Session::flash('message',$message);
+
         return redirect('roles');
     }
 
