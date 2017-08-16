@@ -4,7 +4,7 @@
 
 @section('content')
 	<div class="showback">
-		<h4><i class="fa fa-angle-right"></i> Agregar Nuevo</h4>
+		<h4><i class="fa fa-angle-right"></i> Agregar Nuevo Servicio</h4>
 		<hr>
 		{!! Form::open(['route' => 'services.store', 'method' => 'POST', 'class' => 'form-horizontal style-form', 'autocomplete' => 'off']) !!}
 			<div class="form-group">

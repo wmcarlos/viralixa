@@ -24,8 +24,13 @@ Route::get('roles/inactivate/{id}',['uses' => 'RoleController@inactivate']);
 Route::post('roles/update',['uses' => 'RoleController@update']);
 
 //Service Routes
-
 Route::resource('services','ServiceController', ['except' => ['destroy','show','update']]);
 Route::get('services/activate/{id}', ['uses' => 'ServiceController@activate']);
 Route::get('services/inactivate/{id}', ['uses' => 'ServiceController@inactivate']);
 Route::post('services/update', ['uses' => 'ServiceController@update']);
+
+//Countries Routes
+Route::resource('countries','CountryController',['except' => ['destroy','show','update']]);
+Route::get('countries/activate/{id}',['uses' => 'CountryController@activate']);
+Route::get('countries/inactivate/{id}',['uses' => 'CountryController@inactivate']);
+Route::post('countries/update',['uses' => 'CountryController@update']);
