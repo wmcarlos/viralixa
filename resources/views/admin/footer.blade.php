@@ -17,5 +17,11 @@
     <script src="{{ asset('js/jquery.nicescroll.js') }}" type="text/javascript"></script>
     <!--common script for all pages-->
     <script src="{{ asset('js/common-scripts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('DataTables-1.10.15/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.data-table').DataTable();
+        });
+    </script>
   </body>
 </html>

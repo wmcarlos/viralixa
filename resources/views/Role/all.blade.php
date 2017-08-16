@@ -7,7 +7,7 @@
 		<h4><i class="fa fa-angle-right"></i> Roles</h4>
 		<a class="btn btn-success" href="{{ url('roles/create') }}"><i class="fa fa-plus"></i> Agregar Nuevo</a>
 		<hr>
-		<table class="table">
+		<table class="table data-table">
 			<thead>
 				<th>ID</th>
 				<th>Nombre</th>
