@@ -28,7 +28,6 @@ class CountryController extends Controller
     {
         return view('Country.add');
     }
-
     /**
      * Store a newly created resource in storage.
      *
