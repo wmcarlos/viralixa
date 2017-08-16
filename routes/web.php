@@ -38,5 +38,5 @@ Route::post('countries/update',['uses' => 'CountryController@update']);
 //Users Routes
 Route::resource('users','UserController',['except' => ['destroy','show','update']]);
 Route::get('users/activate/{id}',['uses' => 'UserController@activate']);
-Route::get('user/inactivate/{id}',['uses' => 'UserController@inactivate']);
-Route::post('user/update',['uses' => 'UserController@update']);
+Route::get('users/inactivate/{id}',['uses' => 'UserController@inactivate']);
+Route::post('users/update',['uses' => 'UserController@update']);

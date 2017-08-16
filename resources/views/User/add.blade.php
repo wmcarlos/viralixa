@@ -20,27 +20,21 @@
 				</div>
 			</div>
 			<div class="form-group">
-				{!! Form::label('password','Contrase&ntilde;a',['class' => 'col-sm-2 col-sm-2 control-label']) !!}
-				<div class="col-sm-10">
-					{!! Form::password('password',['class' => 'form-control','id' => 'password']) !!}
-				</div>
-			</div>
-			<div class="form-group">
 				{!! Form::label('phone','Telefono',['class' => 'col-sm-2 col-sm-2 control-label']) !!}
 				<div class="col-sm-10">
 					{!! Form::text('phone',null,['class' => 'form-control','id' => 'phone']) !!}
 				</div>
 			</div>
 			<div class="form-group">
-				{!! Form::label('role','Rol',['class' => 'col-sm-2 col-sm-2 control-label']) !!}
+				{!! Form::label('role_id','Rol',['class' => 'col-sm-2 col-sm-2 control-label']) !!}
 				<div class="col-sm-10">
-					{!! Form::select('role',$roles,null,['class' => 'form-control','id' => 'role']) !!}
+					{!! Form::select('role_id',$roles,null,['class' => 'form-control','id' => 'role']) !!}
 				</div>
 			</div>
 			<div class="form-group">
-				{!! Form::label('country','Pais',['class' => 'col-sm-2 col-sm-2 control-label']) !!}
+				{!! Form::label('country_id','Pais',['class' => 'col-sm-2 col-sm-2 control-label']) !!}
 				<div class="col-sm-10">
-					{!! Form::select('country',$countries,null,['class' => 'form-control','id' => 'country']) !!}
+					{!! Form::select('country_id',$countries,null,['class' => 'form-control','id' => 'country']) !!}
 				</div>
 			</div>
 			<div class="form-group">
