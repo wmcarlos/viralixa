@@ -22,3 +22,10 @@ Route::resource('roles','RoleController', ['except' => ['destroy','show','update
 Route::get('roles/activate/{id}',['uses' => 'RoleController@activate']);
 Route::get('roles/inactivate/{id}',['uses' => 'RoleController@inactivate']);
 Route::post('roles/update',['uses' => 'RoleController@update']);
+
+//Service Routes
+
+Route::resource('services','ServiceController', ['except' => ['destroy','show','update']]);
+Route::get('services/activate/{id}', ['uses' => 'ServiceController@activate']);
+Route::get('services/inactivate/{id}', ['uses' => 'ServiceController@inactivate']);
+Route::post('services/update', ['uses' => 'ServiceController@update']);

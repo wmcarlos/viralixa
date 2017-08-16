@@ -6,7 +6,7 @@
 	<div class="showback">
 		<h4><i class="fa fa-angle-right"></i> Editar Rol</h4>
 		<hr>
-		{!! Form::open(['action' => 'RoleController@update', 'method' => 'POST', 'class' => 'form-horizontal style-form']) !!}
+		{!! Form::open(['action' => 'RoleController@update', 'method' => 'POST', 'class' => 'form-horizontal style-form', 'autocomplete' => 'off']) !!}
 			<div class="form-group">
 				{!! Form::label('name','Nombre',['class' => 'col-sm-2 col-sm-2 control-label']) !!}
 				<div class="col-sm-10">
