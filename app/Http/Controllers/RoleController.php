@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use Session;
+use App\Service;
 
 class RoleController extends Controller
 {
@@ -13,6 +14,12 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+        $this->middleware('ValidateSession');
+        
+    }
+
     public function index()
     {   
         $roles = Role::all()->sortBy('name');
@@ -27,7 +34,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('Role.add');
+        $services = Service::all();
+
+        return view('Role.add')->with('services', $services);
     }
 
     /**
@@ -51,9 +60,12 @@ class RoleController extends Controller
         if($rl === null){
 
             try{
+
                 $role->name = $name;
                 $role->save();
+                $role->services()->attach($request->input('services'));
                 $message = "Rol Insertado con Exito!!";
+
             }catch(\Exception $e){
                 $message = "Error al Intentar Registrar el Rol!!!";
             }
@@ -76,8 +88,14 @@ class RoleController extends Controller
     public function edit($id)
     {   
         $role = Role::find($id);
+        $services = Service::all();
 
-        return view('Role.update')->with('role',$role);
+        $data = [
+            'role' => $role,
+            'services' => $services
+        ];
+
+        return view('Role.update')->with('data',$data);
     }
 
     /**
@@ -99,13 +117,20 @@ class RoleController extends Controller
 
         $rl = $role->where('name','=',$name)->first();
 
+        print_r($role->services->toArray());
+
         if($rl === null){
             try{
+                $role->id = $id;
+
                 $role::where('id',$id)
                     ->update(['name' => $name]);
+
+                $role->services()->attach($request->input('services'));
+
                 $message = "Rol Modificado con Exito!!";
             }catch(\Exception $e){
-                $message = "Ocurrio un error al Tratar de Modificar el Rol!!";
+                $message = "Ocurrio un error al Tratar de Modificar el Rol!!".$e->getMessage();
             }
         }else{
             $message = "El Rol que Intenta Modificar ya Existe!!";
@@ -113,7 +138,7 @@ class RoleController extends Controller
 
         Session::flash('message',$message);        
 
-        return redirect('roles');
+        //return redirect('roles');
     }
 
     public function activate($id){

@@ -13,6 +13,16 @@
 					{!! Form::text('name',null,['class' => 'form-control','id' => 'name']) !!}
 				</div>
 			</div>
+			<h4>Servicios Asignados</h4>
+			<hr>
+			@foreach($services as $service)
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="services[]" value="{{ $service->id }}"> {{ $service->name }}
+					</label>
+				</div>
+			@endforeach()
+			<br>
 			{!! Form::button('<i class="fa fa-floppy-o"></i> Guardar',['type' => 'submit', 'class' => 'btn btn-success']) !!}
 			<a class="btn btn-danger" href="{{ url('roles') }}"><i class="fa fa-times"></i> Cancelar</a>
 		{!! Form::close()  !!}

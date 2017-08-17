@@ -13,6 +13,12 @@ class CountryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+        $this->middleware('ValidateSession');
+        
+    }
+    
     public function index()
     {
         $countries = Country::all()->sortBy('name');

@@ -11,10 +11,10 @@ class Role extends Model
     protected $fillable = ['name','isactive'];
 
     public function services(){
-    	return $this->belongsToMany('App\Service','roles_services')->withPivot('role_id')->withTimestamps();
+    	return $this->belongsToMany('App\Service')->withPivot('role_id')->withTimestamps();
     }
 
-    public function user(){
-    	return $this->belongsTo('App/User');
+    public function users(){
+    	return $this->belongsToMany('App\User');
     }
 }

@@ -16,6 +16,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+        $this->middleware('ValidateSession',['except' => ['auth','logout']]);
+        
+    }
+
     public function index()
     {
         $users = User::all()->sortBy('name');
@@ -190,9 +196,11 @@ class UserController extends Controller
         $user = User::where('email', '=', $request->input('email'))->where('password','=',sha1($request->input('password')))->first();
 
         if($user === null){
+
             $message = "El usuario que ingreso no Existe!!";
             Session::flash('message', $message);
             return redirect('login');
+
         }else{
 
             Session([
@@ -205,7 +213,6 @@ class UserController extends Controller
             ]);
 
             return redirect('dashboard');
-
         }
 
     }

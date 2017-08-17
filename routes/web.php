@@ -12,11 +12,11 @@
 */
 
 //Login Routes
-Route::get('/', function () { return view('login'); });
-Route::get('login', function () { return view('login'); });
+Route::get('/', function () { return view('login'); })->middleware('ValidateNoSession');
+Route::get('login', function () { return view('login'); })->middleware('ValidateNoSession');
 
 //Dashboard Routes
-Route::get('dashboard', function (){ return view('admin'); });
+Route::get('dashboard', function (){ return view('admin'); })->middleware('ValidateSession');
 
 //Role Routes
 Route::resource('roles','RoleController', ['except' => ['destroy','show','update']]);
