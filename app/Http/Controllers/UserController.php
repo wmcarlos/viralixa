@@ -7,6 +7,7 @@ use App\User;
 use Session;
 use App\Role;
 use App\Country;
+use Hash;
 
 class UserController extends Controller
 {
@@ -62,6 +63,8 @@ class UserController extends Controller
                 $user->phone = $request->input('phone');
                 $user->role_id = $request->input('role_id');
                 $user->country_id = $request->input('country_id');
+                $user->avatar = 'ui-sam.jpg';
+                $user->active_code = md5('V1r4l1z4**');
                 $user->save();
 
                 $message = "Usuario Registrado con Exito!!";
@@ -175,5 +178,12 @@ class UserController extends Controller
 
         return redirect('users');
 
+    }
+
+    public function auth(Request $request){
+        $this->validate($request,[
+            'email' => 'required',
+            'password' => 'required'
+        ]);
     }
 }
