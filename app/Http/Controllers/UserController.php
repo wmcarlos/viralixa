@@ -64,7 +64,7 @@ class UserController extends Controller
                 $user->role_id = $request->input('role_id');
                 $user->country_id = $request->input('country_id');
                 $user->avatar = 'ui-sam.jpg';
-                $user->active_code = md5('V1r4l1z4**');
+                $user->active_code = md5('V1r4l1x4**');
                 $user->save();
 
                 $message = "Usuario Registrado con Exito!!";
@@ -181,9 +181,39 @@ class UserController extends Controller
     }
 
     public function auth(Request $request){
+
         $this->validate($request,[
             'email' => 'required',
             'password' => 'required'
         ]);
+
+        $user = User::where('email', '=', $request->input('email'))->where('password','=',sha1($request->input('password')))->first();
+
+        if($user === null){
+            $message = "El usuario que ingreso no Existe!!";
+            Session::flash('message', $message);
+            return redirect('login');
+        }else{
+
+            Session([
+                'name' => $user->name,
+                'email' => $user->email,
+                'role_id' => $user->role_id,
+                'role' => $user->role()->first()->name,
+                'avatar' => $user->avatar,
+                'country' => $user->country()->first()->name
+            ]);
+
+            return redirect('dashboard');
+
+        }
+
+    }
+
+    public function logout(){
+
+        Session::flush();
+        return redirect('login');
+
     }
 }
